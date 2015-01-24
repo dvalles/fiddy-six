@@ -1,0 +1,20 @@
+apply plugin: 'java'
+
+//repository where dependency is stored
+repositories {
+    flatDir {
+    	dirs 'lib'
+    }
+}
+
+//declare dependency
+dependencies {
+	compile name: 'resources'
+}
+
+//Jar File Contents
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Trial', 'Implementation-Version': '1.0' , 'Main-Class' : 'AntLabMain'
+    }
+}
