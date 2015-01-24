@@ -1,4 +1,4 @@
-//package edu.gatech.oad.antlab.person;
+package edu.gatech.oad.antlab.person;
 import java.util.Collections;
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 /**
  *  A simple class for person 2
  *  returns their name and a
- *  modified string 
+ *  modified string
  *
  * @author EunYoung Lee
  * @version 1.1
@@ -18,7 +18,7 @@ public class Person2 {
 //    public static void main(String[] args) {
 //    	Person2 p = new Person2("EunYoung");
 //    	System.out.println(p.calc("iukrfhikuef"));
-//    	
+//
 //    }
 	 /**
 	 * The constructor, takes in the persons
@@ -58,7 +58,7 @@ public class Person2 {
 	 * that varies with an input string
 	 *
 	 * @param input the varying string
-	 * @return the string representing the 
+	 * @return the string representing the
 	 *         object
 	 */
 	public String toString(String input) {
