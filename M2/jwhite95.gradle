@@ -1,0 +1,33 @@
+// Default tasks
+defaultTasks 'task1', 'task2'
+
+// Imports tasks like compileJava, clean, javadoc, etc.
+apply plugin: 'java'
+
+// Default task1
+task task1 << {
+	println 'Hello world, this is Gradle task 1'
+}
+
+// Default task2
+task task2 << {
+	println 'Hello world, this is Gradle task 2'
+}
+
+//Set up some variables (properties)
+sourceCompatibility = 1.7
+version = '1.0'
+
+// Contents/dependencies of jar
+jar {
+	manifest {
+        attributes 'Class-Path' : 'lib/resources.jar', 'Implementation-Version': version , 'Main-Class' : 'edu.gatech.oad.antlab.pkg1.AntLabMain'
+    }
+}
+
+// Location of repos where lib dependencies can be downloaded
+repositories {
+    flatDir {
+    	dirs 'lib'
+    }
+}
