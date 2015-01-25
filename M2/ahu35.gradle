@@ -1,0 +1,33 @@
+defaultTasks 'task1', 'buildJar'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+version = '1.0'
+
+def classPath = './lib/resources.jar'
+def mainClass = 'edu.gatech.oad.antlab.pkg1.AntLabMain'
+def baseName = 'gs-gradle'
+
+jar {
+    baseName = baseName
+    version = '0.1.0'
+
+    // Dependencies/content of jar
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Quickstart',
+        'Implementation-Version': version,
+        'Class-Path': classPath,
+        'Main-Class': mainClass
+    }
+}
+
+dependencies {
+    compile name: 'resources'
+}
+
+repositories {
+    flatDir {
+        dirs 'lib'
+    }
+}
