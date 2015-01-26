@@ -16,6 +16,8 @@ dependencies {
 
 //Jar File Contents
 jar {
+    version = '0.1.3'
+
     manifest {
         attributes 'Implementation-Title': 'Gradle Start',
         'Implementation-Version': '1.0' ,

@@ -81,8 +81,8 @@ import edu.gatech.oad.antlab.pkg2.*;
       Person5 p5 = new Person5("Andrea Hu");
       toPrint += p5.toString("ahu35");
 
-      Person5 p6 = new Person6("Domenico Valles");
-      toPrint += p5.toString("dvalles3");
+      Person6 p6 = new Person6("Domenico Valles");
+      toPrint += p6.toString("dvalles3");
 
       System.out.println(toPrint);
 
