@@ -1,0 +1,45 @@
+//Tasks
+defaultTasks 'log1'
+
+// Java plugin
+apply plugin: 'java'
+
+// Default task task1
+task log1 << {
+    println 'Creating .jar'
+}
+
+// Version
+sourceCompatibility = 1.7
+version = '1.0'
+
+// Variables
+def mainClass = 'edu.gatech.oad.antlab.pkg1.AntLabMain'
+def classPath = './lib/resources.jar'
+def baseName = 'gs-gradle'
+
+// Jar
+jar {
+    baseName = baseName
+    version = '1.0'
+
+    // Dependencies/content of jar
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Quickstart',
+        'Implementation-Version': version,
+        'Class-Path': classPath,
+        'Main-Class': mainClass
+    }
+}
+
+// Dependencies
+dependencies {
+    compile name: 'resources'
+}
+
+// Repository
+repositories {
+    flatDir {
+        dirs 'lib'
+    }
+}
