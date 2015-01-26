@@ -3,18 +3,23 @@ apply plugin: 'java'
 //repository where dependency is stored
 repositories {
     flatDir {
-        dirs 'lib'
+    	dirs 'lib'
     }
 }
 
+//def baseName = 'gs-gradle'
+
 //declare dependency
 dependencies {
-    compile name: 'resources'
+	compile name: 'resources'
 }
 
 //Jar File Contents
 jar {
     manifest {
-        attributes 'Implementation-Title': 'Gradle Trial', 'Implementation-Version': '1.0' , 'Main-Class' : 'AntLabMain'
+        attributes 'Implementation-Title': 'Gradle Start',
+        'Implementation-Version': '1.0' ,
+        'Main-Class': 'edu.gatech.oad.antlab.pkg1.AntLabMain',
+        'Class-Path': './../../lib/resources.jar'
     }
 }
