@@ -1,51 +1,25 @@
-// Name yo default tasks here (these will run if you don't specify anything else)
-defaultTasks 'task1', 'buildJar'
-
-// Imports tasks like compileJava, clean, javadoc, etc.
 apply plugin: 'java'
 
-// Default task task1
-task task1 << {
-    println '/====================================/'
-    println '| Creating .jar                      |'
-}
-
-// Default task buildJar
-task buildJar << {
-    println '| Starting buildJar task ...         |'
-    println '/====================================/'
-}
-
-// Set up some (properties)
-sourceCompatibility = 1.7
-version = '1.0'
-
-// Define variables with 'def'
-def classPath = './lib/resources.jar'
-def mainClass = 'edu.gatech.oad.antlab.pkg1.AntLabMain'
-def baseName = 'gs-gradle'
-
-// Setups jar
-jar {
-    baseName = baseName
-    version = '0.1.0'
-
-    // Dependencies/content of jar
-    manifest {
-        attributes 'Implementation-Title': 'Gradle Quickstart',
-        'Implementation-Version': version,
-        'Class-Path': classPath,
-        'Main-Class': mainClass
+//repository where dependency is stored
+repositories {
+    flatDir {
+        dirs 'lib'
     }
 }
 
+//def baseName = 'gs-gradle'
+
+//declare dependency
 dependencies {
     compile name: 'resources'
 }
 
-//Set up a location of repositories so that any needed library dependencies can be downloaded
-repositories {
-    flatDir {
-        dirs 'lib'
+//Jar File Contents
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Start',
+        'Implementation-Version': '1.0' ,
+        'Main-Class': 'edu.gatech.oad.antlab.pkg1.AntLabMain',
+        'Class-Path': './../../lib/resources.jar'
     }
 }
