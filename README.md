@@ -1,1 +1,1 @@
-# fidy-six
+# fiddy-six
