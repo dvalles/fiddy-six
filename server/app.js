@@ -1,59 +1,133 @@
-/*jslint node: true */
+// app.js
+// Written by Ryan Brooks
 
 /**
- * Dependencies
-*/
-var bodyParser = require('body-parser');
+ * Base Setup
+ */
 var express = require('express');
-var mongoose = require('mongoose');
-var path = require('path');
-var userController = require('./userController')
-
 var app = express();
+var bodyParser = require('body-parser');
+var port = process.env.PORT || 5000;
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/needitDB');
+var User = require('./models/userModel');
 
 /**
- * Express configs
+ * Configurations
 */
-
-app.set('port', 3000);
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json({ limit: '900mb'}));
+app.use(bodyParser.json());
 
+/**
+ * Routes
+*/
 var router = express.Router();
-//var userController = function() {};
 
-// userController.prototype.signUp = function() {
-// 	console.log("Yo, you loggin stuff.");
-// };
-
-//var userObj = new userController();
-
-router.get('/user/get', function(req, res) {
-	console.log(res);
-	console.log('This is a user');
-	res.json({
-		status: true,
-		message: 'This is a user'
-	});
+router.use(function(req, res, next) {
+	console.log('Something is happening');
+	next();
 });
 
-router.get('/collection/get', userController.signUp);
-
-router.post('/user/signup', function(req, res) {
-	
-	console.log('This is a collection');
-	res.json({
-		status: true,
-		message: 'This is a signup'
-	});
+router.get('/', function(req, res) {
+	res.json({ message: 'Api working!' });
 });
 
+router.route('/users')
 
+	.post(function(req, res) {
+		var user = new User;
+		user.username = req.body.username;
+		user.password = req.body.password;
+		user.incorrect_logins = 0;
+
+		console.log('Username: ' + user.username);
+		console.log('Password: ' + user.password);
+
+		user.save(function(err) {
+			if (err)
+				res.send(err);
+
+			res.json({ message: 'User added' });
+		});
+	})
+
+	.get(function(req, res) {
+		User.find(function(err, users) {
+			if (err)
+				res.send(err);
+
+			res.json(users);
+		});
+	});
+
+router.route('/users/:user_id')
+
+	.get(function(req, res) {
+		User.findById(req.params.user_id, function(err, user) {
+			if (err)
+				res.send(err);
+
+			res.json(user);
+		});
+	})
+
+	.put(function(req, res) {
+		User.findById(req.params.user_id, function(err, user) {
+			if(err)
+				res.send(err);
+
+			user.password = req.body.password; // Update password
+
+			user.save(function(err) {
+				if (err)
+					res.send(err);
+
+				res.json({ message: user.username + ' Updated' });
+			});
+		});
+	})
+
+	.delete(function(req, res) {
+		User.remove({
+			_id: req.params.user_id
+		}, function(err, user) {
+			if (err)
+				res.send(err);
+
+			res.json({ message: user.username + ' Deleted'});
+		});
+	});
+
+router.route('/checkUser')
+
+	.post(function(req, res) {
+		var user = new User;
+		user.username = req.body.username;
+		user.password = req.body.password;
+
+		var query = User.findOne({ username: user.username })
+						.where('password').equals(user.password);
+
+		query.exec(function(err, user) {
+			if (err) {
+				res.send(err);
+			}
+
+			if (user == null) {
+				res.json({ correct: false });
+			} else {
+				res.json({ correct: true });
+			}
+			
+		});
+	});
+
+
+// Register Routes -- Prefix with /api
 app.use('/api', router);
 
-app.listen(app.get('port'), function() {
-	console.log('Express listening to port', app.get('port'));
-});
-
-module.exports = app;
+/**
+ * Start Server
+*/
+app.listen(port);
+console.log('Server started on port ' + port);

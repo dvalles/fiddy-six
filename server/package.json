@@ -1,15 +1,11 @@
 {
-  "name": "compass",
-  "author": "Jonathan Z White",
-  "description": "Lightweight full stack javascript boilerplate that makes using Mongo, Node, Angular, and Express a breeze.",
-  "version": "0.0.1",
-  "bugs": "https://github.com/JonathanZWhite/compass.git/issues",
-  "dependencies": {
-    "body-parser": "^1.10.2",
-    "express": "^4.11.1",
-    "mongoose": "^3.8.21",
-    "passport": "^0.2.1",
-    "passport-local": "^1.0.0"
-  },
-  "devDependencies": {}
+    "name": "needit-api",
+    "author": "Ryan Brooks",
+    "description": "RESTful api for interfacing with database.",
+    "main": "app.js",
+    "dependencies": {
+        "express": "^4.11.1",
+        "mongoose": "^3.8.21",
+        "body-parser": "^1.10.2"
+    }
 }
