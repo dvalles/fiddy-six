@@ -106,7 +106,7 @@ router.route('/checkUser')
 		user.username = req.body.username;
 		user.password = req.body.password;
 
-		var query = User.findOne({ username: user.username })
+		var query = User.findOne({ $or: [{ username: user.username }, { email: user.username}]})
 						.where('password').equals(user.password);
 
 		query.exec(function(err, user) {

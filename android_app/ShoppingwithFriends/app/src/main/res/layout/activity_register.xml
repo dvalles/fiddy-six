@@ -2,23 +2,20 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <!-- Title Text -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="needit"
+        android:text="Sign up for needit:"
+        android:layout_marginBottom="8dp"
         android:layout_centerHorizontal="true"
-        android:layout_above="@+id/al_login_layout"
+        android:layout_above="@+id/ar_register_layout"
         android:textColor="@color/main_green"
-        android:textSize="60dp"
+        android:textSize="40dp"
         />
 
-    <!-- Most of the time we will use RelativeLayout -->
-    <!-- XML is Actually a lot like HTML, so should be easy -->
-    <!-- If anything is dynamic or interactive, ALWAYS give it an id -->
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/al_login_layout"
+        android:id="@+id/ar_register_layout"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,9 +29,25 @@
             android:layout_height="wrap_content"
             android:textColor="#372c24"
             android:fontFamily="sans-serif-condensed"
+            android:text="E-mail:"/>
+        <EditText
+            android:id="@+id/ar_email_et"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            android:layout_marginBottom="20dip"
+            android:singleLine="true"
+            android:inputType="textEmailAddress"
+            android:fontFamily="sans-serif-condensed"/>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#372c24"
+            android:fontFamily="sans-serif-condensed"
             android:text="Username:"/>
         <EditText
-            android:id="@+id/al_username_et"
+            android:id="@+id/ar_username_et"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dip"
@@ -51,7 +64,7 @@
             android:text="Password"/>
 
         <EditText
-            android:id="@+id/al_password_et"
+            android:id="@+id/ar_password_et"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dip"
@@ -60,26 +73,33 @@
             android:password="true"
             android:fontFamily="sans-serif-condensed"/>
 
-        <!-- Login button -->
-        <Button
-            android:id="@+id/al_login_button"
+        <TextView
             android:layout_width="fill_parent"
-            android:layout_height="45sp"
-            android:layout_marginTop="20sp"
-            android:text="Login"
-            android:textColor="@color/white"
-            android:background="@drawable/selector_button_green"/>
+            android:layout_height="wrap_content"
+            android:textColor="#372c24"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Re-enter password"/>
+
+        <EditText
+            android:id="@+id/ar_password_reenter_et"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            android:singleLine="true"
+            android:password="true"
+            android:fontFamily="sans-serif-condensed"/>
+
     </LinearLayout>
 
-    <Button android:id="@+id/al_register_button"
+    <Button android:id="@+id/ar_register_button"
         android:background="@drawable/selector_button_green"
         android:layout_width="fill_parent"
         android:layout_height="42dp"
-        android:layout_marginTop="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
-        android:layout_below="@+id/al_login_layout"
-        android:text="New to needit? Register here"
+        android:text="Sign me up!"
         android:fontFamily="sans-serif-condensed"
         android:textColor="#fff"/>
 
