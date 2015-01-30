@@ -1,3 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Tester2340</string>
+
+    <string name="app_name">Shopping with Friends</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="activity_login_label">Login</string>
+    <string name="activity_register_label">Make an Account</string>
+
 </resources>

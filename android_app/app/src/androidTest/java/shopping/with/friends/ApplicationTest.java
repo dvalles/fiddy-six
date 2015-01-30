@@ -1,4 +1,4 @@
-package ryanbrooks.tester2340;
+package shopping.with.friends;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
