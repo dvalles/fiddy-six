@@ -68,7 +68,8 @@ public class LoginActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login); // <-- Very important line. You must include this. Basically it sets the view to any layout you specify
-        getActionBar().hide(); // Hiding actionbar
+        // TODO: Remove the actionbar
+        //getActionBar().hide(); // Hiding actionbar
 
         usernameET = (EditText) findViewById(R.id.al_username_et); // Finding username "form" aka EditText
         passwordET = (EditText) findViewById(R.id.al_password_et); // Finding password EditText

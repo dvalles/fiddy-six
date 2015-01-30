@@ -49,7 +49,8 @@ public class RegisterActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        // TODO: Remove the actionbar
+        //getActionBar().setDisplayHomeAsUpEnabled(true);
 
         emailET = (EditText) findViewById(R.id.ar_email_et);
         usernameET = (EditText) findViewById(R.id.ar_username_et);
