@@ -36,6 +36,7 @@ router.route('/users')
 
 	.post(function(req, res) {
 		var user = new User;
+        user.email = req.body.email;
 		user.username = req.body.username;
 		user.password = req.body.password;
 		user.incorrect_logins = 0;
@@ -47,7 +48,7 @@ router.route('/users')
 			if (err)
 				res.send(err);
 
-			res.json({ message: 'User added' });
+			res.json({ success: true });
 		});
 	})
 
