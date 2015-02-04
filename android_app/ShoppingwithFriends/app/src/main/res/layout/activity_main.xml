@@ -1,20 +1,35 @@
 <!-- ALWAYS USE RELATIVE LAYOUTS!!!!!!!!! -->
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <!-- This is the text in the center of the screen
-         that says Main Menu. I've altered the styling slightly -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Main Menu"
-        android:layout_centerInParent="true"
-        android:textSize="24dp"
-        android:textColor="#000"
-        android:fontFamily="sans-serif-thin"/>
+    <include
+        android:id="@+id/ma_toolbar"
+        layout="@layout/activity_main_toolbar" />
 
-</RelativeLayout>
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/ma_drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/ma_drawer_frame_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ListView
+            android:id="@+id/ma_drawer_menu_listview"
+            android:layout_width="240dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:choiceMode="singleChoice"
+            android:background="#fff"
+            android:divider="@null"
+            android:dividerHeight="0dp" />
+
+    </android.support.v4.widget.DrawerLayout>
+
+</LinearLayout>

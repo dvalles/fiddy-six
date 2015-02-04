@@ -70,7 +70,7 @@ public class RegisterActivity extends Activity {
                 } else if (!passwordET.getText().toString().trim().equals(passwordConfirmET.getText().toString().trim())) {
                     Toast.makeText(RegisterActivity.this, "Your passwords don't match!", Toast.LENGTH_SHORT).show();
                 } else {
-                    new HttpAsyncTask().execute("http://128.61.72.151:5000/api/users");
+                    new HttpAsyncTask().execute("http://128.61.66.79:5000/api/users");
                 }
             }
         });

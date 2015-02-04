@@ -30,6 +30,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import shopping.with.friends.MainActivity;
@@ -52,6 +53,7 @@ public class LoginActivity extends Activity {
     private HttpPost post;
     private JSONObject loginObj;
     private boolean loginSuccessful;
+    private HashMap<String, Integer> userMap;
 
     /**
      * onCreate is basically the main method for the application
@@ -70,6 +72,8 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.activity_login); // <-- Very important line. You must include this. Basically it sets the view to any layout you specify
         // TODO: Remove the actionbar
         //getActionBar().hide(); // Hiding actionbar
+
+        userMap = new HashMap<>();
 
         usernameET = (EditText) findViewById(R.id.al_username_et); // Finding username "form" aka EditText
         passwordET = (EditText) findViewById(R.id.al_password_et); // Finding password EditText
@@ -99,7 +103,7 @@ public class LoginActivity extends Activity {
                     usernameET.setEnabled(false);
                     passwordET.setEnabled(false);
                     // Create the ASyncTask that will run at the same time as the activity but in the background (see below)
-                    new HttpAsyncTask().execute("http://128.61.72.151:5000/api/checkUser"); // TODO: Change to server URL
+                    new HttpAsyncTask().execute("http://128.61.66.79:5000/api/checkUser"); // TODO: Change to server URL
                 }
             }
         });
@@ -259,11 +263,31 @@ public class LoginActivity extends Activity {
             finish(); // !! VERY IMPORTANT !! only call this if you're for sure done with an activity for the rest of the app. Any new instance will be brand new
         }
         else {
-            // Incorrect login, tell user, re-enable all buttons
-            Toast.makeText(getBaseContext(), "Username or Password incorrect! Please try again.", Toast.LENGTH_SHORT).show();
-            loginButton.setEnabled(true);
-            usernameET.setEnabled(true);
-            passwordET.setEnabled(true);
+            Integer nameCount = userMap.get(usernameET.getText().toString().trim());
+            Log.d("Count", nameCount + "");
+            if (nameCount == null) {
+                nameCount = 1;
+                userMap.put(usernameET.getText().toString().trim(), nameCount);
+                Toast.makeText(getBaseContext(), "Username or Password incorrect! Count: " + userMap.get(usernameET.getText().toString().trim()), Toast.LENGTH_SHORT).show();
+                loginButton.setEnabled(true);
+                usernameET.setEnabled(true);
+                passwordET.setEnabled(true);
+            } else {
+                if (nameCount >= 3) {
+                    Toast.makeText(getBaseContext(), "3 incorrect tries! Please Contact an administrator to activate your account.", Toast.LENGTH_SHORT).show();
+                    loginButton.setEnabled(false);
+                    usernameET.setEnabled(false);
+                    passwordET.setEnabled(false);
+                } else {
+                    nameCount++;
+                    userMap.put(usernameET.getText().toString().trim(), nameCount);
+                    Toast.makeText(getBaseContext(), "Username or Password incorrect! Count: " + userMap.get(usernameET.getText().toString().trim()), Toast.LENGTH_SHORT).show();
+                    loginButton.setEnabled(true);
+                    usernameET.setEnabled(true);
+                    passwordET.setEnabled(true);
+                }
+            }
+
         }
     }
 }

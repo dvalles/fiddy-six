@@ -29,6 +29,13 @@
 
         <activity
             android:name=".Login.LoginActivity"
+            android:parentActivityName=".LoginSelectorActivity"
+            android:label="@string/activity_login_label"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <activity
+            android:name=".LoginSelectorActivity"
             android:label="@string/activity_login_label"
             android:screenOrientation="portrait" >
             <intent-filter>

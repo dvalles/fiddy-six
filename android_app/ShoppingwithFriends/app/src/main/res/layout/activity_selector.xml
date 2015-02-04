@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="needit"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/as_login_layout"
+        android:textColor="@color/main_green"
+        android:textSize="60dp"
+        />
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/as_login_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16sp"
+        android:layout_marginRight="16sp"
+        android:padding="16dp"
+        android:layout_centerInParent="true">
+        <Button
+            android:id="@+id/as_login_button"
+            android:layout_width="fill_parent"
+            android:layout_height="45sp"
+            android:layout_marginTop="20sp"
+            android:text="Login"
+            android:textColor="@color/white"
+            android:background="@drawable/selector_button_green"/>
+
+        <Button
+            android:id="@+id/as_register_button"
+            android:layout_width="fill_parent"
+            android:layout_height="45sp"
+            android:layout_marginTop="20sp"
+            android:text="Register"
+            android:textColor="@color/white"
+            android:background="@drawable/selector_button_green"/>
+    </LinearLayout>
+
+</RelativeLayout>
