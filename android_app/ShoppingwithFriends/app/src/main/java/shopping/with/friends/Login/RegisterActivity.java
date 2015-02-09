@@ -1,9 +1,9 @@
 package shopping.with.friends.Login;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -33,7 +33,7 @@ import shopping.with.friends.R;
 /**
  * Created by Ryan Brooks on 1/24/15.
  */
-public class RegisterActivity extends Activity {
+public class RegisterActivity extends ActionBarActivity {
 
     /**
      * Declarations
@@ -70,7 +70,7 @@ public class RegisterActivity extends Activity {
                 } else if (!passwordET.getText().toString().trim().equals(passwordConfirmET.getText().toString().trim())) {
                     Toast.makeText(RegisterActivity.this, "Your passwords don't match!", Toast.LENGTH_SHORT).show();
                 } else {
-                    new HttpAsyncTask().execute("http://128.61.66.79:5000/api/users");
+                    new HttpAsyncTask().execute("http://128.61.75.37:5000/api/users"); //TODO: CHANGE THIS BEFORE USE!!!!!!!!
                 }
             }
         });

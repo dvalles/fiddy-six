@@ -5,10 +5,10 @@ package shopping.with.friends.Login;
  * Imports of all widgets and Activities, etc.
  * All library imports and other activities will be here
  */
-import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -42,7 +42,7 @@ import shopping.with.friends.R; // <-- This file is sooooo important. I will be 
  * Make sure all activities extend Activity. I'll teach y'all
  * about other activities and Fragments later when they come.
  */
-public class LoginActivity extends Activity {
+public class LoginActivity extends ActionBarActivity {
 
     /**
      * Declarations
@@ -103,7 +103,8 @@ public class LoginActivity extends Activity {
                     usernameET.setEnabled(false);
                     passwordET.setEnabled(false);
                     // Create the ASyncTask that will run at the same time as the activity but in the background (see below)
-                    new HttpAsyncTask().execute("http://128.61.66.79:5000/api/checkUser"); // TODO: Change to server URL
+                    //TODO: CHANGE THIS BEFORE USE!!!!!!!!
+                    new HttpAsyncTask().execute("http://128.61.75.37:5000/api/checkUser"); // TODO: Change to server URL
                 }
             }
         });

@@ -1,8 +1,8 @@
 package shopping.with.friends;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 
@@ -12,7 +12,7 @@ import shopping.with.friends.Login.RegisterActivity;
 /**
  * Created by ryanbrooks on 2/2/15.
  */
-public class LoginSelectorActivity extends Activity {
+public class LoginSelectorActivity extends ActionBarActivity {
 
     private Button loginButton, registerButton;
 
