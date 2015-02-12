@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import shopping.with.friends.R;
 
+
 /**
  * Created by Ryan Brooks on 2/4/15.
  */

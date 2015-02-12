@@ -11,6 +11,7 @@
     <string name="activity_register_label">Make an Account</string>
 
     <string-array name="ma_slide_drawer_items">
+        <item >Main Feed</item>
         <item >Profile</item>
         <item >Wishlist</item>
         <item >Following</item>

@@ -23,6 +23,7 @@ import shopping.with.friends.Drawer.DrawerMenuAdapter;
 import shopping.with.friends.Drawer.DrawerMenuItem;
 import shopping.with.friends.Fragments.Followers;
 import shopping.with.friends.Fragments.Following;
+import shopping.with.friends.Fragments.MainFeed;
 import shopping.with.friends.Fragments.Profile;
 import shopping.with.friends.Fragments.Settings;
 import shopping.with.friends.Fragments.WishList;
@@ -81,19 +82,22 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         switch (position) {
             case 0:
-                setFragment(0, Profile.class);
+                setFragment(0, MainFeed.class);
                 break;
             case 1:
-                setFragment(1, WishList.class);
+                setFragment(1, Profile.class);
                 break;
             case 2:
-                setFragment(2, Following.class);
+                setFragment(2, WishList.class);
                 break;
             case 3:
-                setFragment(3, Followers.class);
+                setFragment(3, Following.class);
                 break;
             case 4:
-                setFragment(4, Settings.class);
+                setFragment(4, Followers.class);
+                break;
+            case 5:
+                setFragment(5, Settings.class);
                 break;
         }
     }

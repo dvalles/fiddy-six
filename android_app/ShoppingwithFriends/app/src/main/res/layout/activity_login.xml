@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/main_blue">
 
     <!-- Title Text -->
     <TextView
@@ -9,7 +10,7 @@
         android:text="needit"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/al_login_layout"
-        android:textColor="@color/main_green"
+        android:textColor="@color/white"
         android:textSize="60dp"
         />
 
@@ -30,7 +31,7 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textColor="#372c24"
+            android:textColor="@color/white"
             android:fontFamily="sans-serif-condensed"
             android:text="Username:"/>
         <EditText
@@ -46,7 +47,7 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textColor="#372c24"
+            android:textColor="@color/white"
             android:fontFamily="sans-serif-condensed"
             android:text="Password"/>
 
@@ -68,11 +69,11 @@
             android:layout_marginTop="20sp"
             android:text="Login"
             android:textColor="@color/white"
-            android:background="@drawable/selector_button_green"/>
+            android:background="@drawable/selector_button_pink"/>
     </LinearLayout>
 
     <Button android:id="@+id/al_register_button"
-        android:background="@drawable/selector_button_green"
+        android:background="@drawable/selector_button_pink"
         android:layout_width="fill_parent"
         android:layout_height="42dp"
         android:layout_marginTop="30dp"
