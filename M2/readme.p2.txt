@@ -1,2 +1,0 @@
-Eun-Young Lee
-HELLO HELLO

@@ -1,1 +1,0 @@
-Person1 = Andrea Hu
