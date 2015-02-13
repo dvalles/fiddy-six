@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
-    tools:context="shopping.with.friends.Fragments.Profile">
+    tools:context="shopping.with.friends.Fragments.Profile"
+    android:background="@color/main_blue">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Profile Fragment" />
-
+    <ImageView
+        android:layout_width="195dp"
+        android:layout_height="195dp"
+        android:id="@+id/imageView"
+        android:layout_gravity="center_horizontal|top"
+        android:src="@android:mipmap/sym_def_app_icon" />
 </FrameLayout>
