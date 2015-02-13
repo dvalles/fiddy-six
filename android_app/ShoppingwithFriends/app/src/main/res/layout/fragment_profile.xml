@@ -11,7 +11,8 @@
         android:layout_height="195dp"
         android:id="@+id/imageView"
         android:layout_gravity="center_horizontal|top"
-        android:src="@android:mipmap/sym_def_app_icon" />
+        android:src="@android:mipmap/sym_def_app_icon"
+        android:layout_marginTop="42dp"/>
 
     <Button
         android:layout_width="176dp"
