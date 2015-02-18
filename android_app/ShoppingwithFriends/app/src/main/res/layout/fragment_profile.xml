@@ -18,9 +18,11 @@
         android:layout_below="@+id/fp_imageView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
+
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginRight="0dp"
             android:layout_weight="0.5"
             android:text="@string/profile_followers_button"
             android:id="@+id/Following_Profile_Button"

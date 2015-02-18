@@ -1,4 +1,4 @@
-package shopping.with.friends;
+package shopping.with.friends.Login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,8 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 
-import shopping.with.friends.Login.LoginActivity;
-import shopping.with.friends.Login.RegisterActivity;
+import shopping.with.friends.R;
 
 /**
  * Created by ryanbrooks on 2/2/15.
