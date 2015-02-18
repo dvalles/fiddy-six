@@ -104,7 +104,7 @@ public class LoginActivity extends ActionBarActivity {
                     passwordET.setEnabled(false);
                     // Create the ASyncTask that will run at the same time as the activity but in the background (see below)
                     //TODO: CHANGE THIS BEFORE USE!!!!!!!!
-                    new HttpAsyncTask().execute("http://128.61.75.37:5000/api/checkUser"); // TODO: Change to server URL
+                    new HttpAsyncTask().execute("http://128.61.76.103:5000/api/checkUser"); // TODO: Change to server URL
                 }
             }
         });
