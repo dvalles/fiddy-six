@@ -27,6 +27,7 @@ import shopping.with.friends.Fragments.MainFeed;
 import shopping.with.friends.Fragments.Profile;
 import shopping.with.friends.Fragments.Settings;
 import shopping.with.friends.Fragments.WishList;
+import shopping.with.friends.Login.LoginSelectorActivity;
 
 /**
  * Created by Ryan Brooks on 1/24/15.
@@ -74,7 +75,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
         drawerLayout.setDrawerListener(drawerToggle);
 
         if (savedInstanceState == null) {
-            setFragment(0, Profile.class);
+            setFragment(0, MainFeed.class);
         }
     }
 
