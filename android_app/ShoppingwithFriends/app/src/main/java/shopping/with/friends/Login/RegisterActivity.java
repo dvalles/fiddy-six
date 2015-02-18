@@ -1,11 +1,13 @@
 package shopping.with.friends.Login;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -29,6 +31,7 @@ import java.util.List;
 
 import shopping.with.friends.MainActivity;
 import shopping.with.friends.R;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * Created by Ryan Brooks on 1/24/15.
@@ -40,7 +43,12 @@ public class RegisterActivity extends ActionBarActivity {
      */
     private EditText emailET, usernameET, passwordET, passwordConfirmET;
     private Button signUpButton;
-    private boolean registrationSuccessful;
+    private String returnUsername;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
     /**
      * See loginActivity for explanation of onCreate
@@ -51,6 +59,7 @@ public class RegisterActivity extends ActionBarActivity {
         setContentView(R.layout.activity_register);
         // TODO: Remove the actionbar
         //getActionBar().setDisplayHomeAsUpEnabled(true);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         emailET = (EditText) findViewById(R.id.ar_email_et);
         usernameET = (EditText) findViewById(R.id.ar_username_et);
@@ -70,7 +79,7 @@ public class RegisterActivity extends ActionBarActivity {
                 } else if (!passwordET.getText().toString().trim().equals(passwordConfirmET.getText().toString().trim())) {
                     Toast.makeText(RegisterActivity.this, "Your passwords don't match!", Toast.LENGTH_SHORT).show();
                 } else {
-                    new HttpAsyncTask().execute("http://128.61.76.103:5000/api/users"); //TODO: CHANGE THIS BEFORE USE!!!!!!!!
+                    new HttpAsyncTask().execute("http://128.61.76.103:3000/api/user/signup"); //TODO: CHANGE THIS BEFORE USE!!!!!!!!
                 }
             }
         });
@@ -173,9 +182,9 @@ public class RegisterActivity extends ActionBarActivity {
     private void readJSONResponse(String result) throws JSONException {
         Log.d("JSON", result);
         JSONObject mainObject = new JSONObject(result);
-        registrationSuccessful = mainObject.getBoolean("success");
+        returnUsername = mainObject.getString("username");
 
-        if (registrationSuccessful) {
+        if (returnUsername != null && returnUsername.equals(usernameET.getText().toString().trim())) {
             Intent mainActivity = new Intent(RegisterActivity.this, MainActivity.class);
             startActivity(mainActivity);
             Toast.makeText(getBaseContext(), "Registration Successful!", Toast.LENGTH_SHORT).show();

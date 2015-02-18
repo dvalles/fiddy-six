@@ -5,12 +5,14 @@ package shopping.with.friends.Login;
  * Imports of all widgets and Activities, etc.
  * All library imports and other activities will be here
  */
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -35,6 +37,7 @@ import java.util.List;
 
 import shopping.with.friends.MainActivity;
 import shopping.with.friends.R; // <-- This file is sooooo important. I will be explaining more in the future
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * Created by Ryan Brooks on 1/24/15.
@@ -53,7 +56,11 @@ public class LoginActivity extends ActionBarActivity {
     private HttpPost post;
     private JSONObject loginObj;
     private boolean loginSuccessful;
-    private HashMap<String, Integer> userMap;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
     /**
      * onCreate is basically the main method for the application
@@ -72,8 +79,7 @@ public class LoginActivity extends ActionBarActivity {
         setContentView(R.layout.activity_login); // <-- Very important line. You must include this. Basically it sets the view to any layout you specify
         // TODO: Remove the actionbar
         //getActionBar().hide(); // Hiding actionbar
-
-        userMap = new HashMap<>();
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         usernameET = (EditText) findViewById(R.id.al_username_et); // Finding username "form" aka EditText
         passwordET = (EditText) findViewById(R.id.al_password_et); // Finding password EditText
@@ -104,7 +110,7 @@ public class LoginActivity extends ActionBarActivity {
                     passwordET.setEnabled(false);
                     // Create the ASyncTask that will run at the same time as the activity but in the background (see below)
                     //TODO: CHANGE THIS BEFORE USE!!!!!!!!
-                    new HttpAsyncTask().execute("http://128.61.76.103:5000/api/checkUser"); // TODO: Change to server URL
+                    new HttpAsyncTask().execute("http://128.61.76.103:3000/api/user/login"); // TODO: Change to server URL
                 }
             }
         });
@@ -145,7 +151,7 @@ public class LoginActivity extends ActionBarActivity {
 
             // Attach items as POST variables
             List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-            nameValuePairs.add(new BasicNameValuePair("username", username));
+            nameValuePairs.add(new BasicNameValuePair("email", username));
             nameValuePairs.add(new BasicNameValuePair("password", password));
 
             // Make sure httpPost has the POST variables attached
@@ -254,7 +260,7 @@ public class LoginActivity extends ActionBarActivity {
         Log.d("JSON", result);
         JSONObject mainObject = new JSONObject(result);
         // JSON response should look like: { correct: true/false }
-        loginSuccessful = mainObject.getBoolean("correct"); // Cast correct variable as boolean
+        loginSuccessful = mainObject.getBoolean("status"); // Cast correct variable as boolean
 
         if(loginSuccessful) {
             Intent mainActivity = new Intent(LoginActivity.this, MainActivity.class); // Successful login, starts main
@@ -262,31 +268,10 @@ public class LoginActivity extends ActionBarActivity {
             Toast.makeText(getBaseContext(), "Login Successful!", Toast.LENGTH_SHORT).show(); // Shows a quick message to the user saying it worked.
             finish(); // !! VERY IMPORTANT !! only call this if you're for sure done with an activity for the rest of the app. Any new instance will be brand new
         } else {
-            Integer nameCount = userMap.get(usernameET.getText().toString().trim());
-            Log.d("Count", nameCount + "");
-            if (nameCount == null) {
-                nameCount = 1;
-                userMap.put(usernameET.getText().toString().trim(), nameCount);
-                Toast.makeText(getBaseContext(), "Username or Password incorrect! Count: " + userMap.get(usernameET.getText().toString().trim()), Toast.LENGTH_SHORT).show();
-                loginButton.setEnabled(true);
-                usernameET.setEnabled(true);
-                passwordET.setEnabled(true);
-            } else {
-                if (nameCount >= 3) {
-                    Toast.makeText(getBaseContext(), "3 incorrect tries! Please Contact an administrator to activate your account.", Toast.LENGTH_SHORT).show();
-                    loginButton.setEnabled(false);
-                    usernameET.setEnabled(false);
-                    passwordET.setEnabled(false);
-                } else {
-                    nameCount++;
-                    userMap.put(usernameET.getText().toString().trim(), nameCount);
-                    Toast.makeText(getBaseContext(), "Username or Password incorrect! Count: " + userMap.get(usernameET.getText().toString().trim()), Toast.LENGTH_SHORT).show();
-                    loginButton.setEnabled(true);
-                    usernameET.setEnabled(true);
-                    passwordET.setEnabled(true);
-                }
-            }
-
+            Toast.makeText(getBaseContext(), mainObject.getString("message"), Toast.LENGTH_SHORT).show();
+            loginButton.setEnabled(true);
+            usernameET.setEnabled(true);
+            passwordET.setEnabled(true);
         }
     }
 }

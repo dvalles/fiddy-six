@@ -2,8 +2,13 @@
 <resources>
 
     <string name="app_name">Collect</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="app_name_all_caps">COLLECT</string>
     <string name="fontawesome_logo">&#xf02b;</string>
+    <string name="username_hint">&#xf007;   username</string>
+    <string name="password_hint">&#xf13e;   password</string>
+    <string name="email_hint">&#xf003;   address@email.com</string>
+    <string name="name_hint">&#xf118;   name</string>
+
 
     <string name="action_settings">Settings</string>
     <string name="ma_action_logout">Logout</string>
