@@ -1,5 +1,6 @@
 package shopping.with.friends.Login;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import shopping.with.friends.R;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * Created by ryanbrooks on 2/2/15.
@@ -14,6 +16,11 @@ import shopping.with.friends.R;
 public class LoginSelectorActivity extends ActionBarActivity {
 
     private Button loginButton, registerButton;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

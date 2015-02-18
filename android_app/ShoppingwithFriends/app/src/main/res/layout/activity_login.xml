@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="needit"
+        android:text="@string/app_name"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/al_login_layout"
         android:textColor="@color/white"
@@ -69,7 +69,7 @@
             android:layout_marginTop="20sp"
             android:text="Login"
             android:textColor="@color/white"
-            android:background="@drawable/selector_button_pink"/>
+            android:background="@drawable/selector_button_transparent_white_outline"/>
     </LinearLayout>
 
     <Button android:id="@+id/al_register_button"

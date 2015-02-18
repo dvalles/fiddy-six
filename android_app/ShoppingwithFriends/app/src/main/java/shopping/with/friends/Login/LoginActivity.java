@@ -256,14 +256,12 @@ public class LoginActivity extends ActionBarActivity {
         // JSON response should look like: { correct: true/false }
         loginSuccessful = mainObject.getBoolean("correct"); // Cast correct variable as boolean
 
-        if(loginSuccessful)
-        {
+        if(loginSuccessful) {
             Intent mainActivity = new Intent(LoginActivity.this, MainActivity.class); // Successful login, starts main
             startActivity(mainActivity);
             Toast.makeText(getBaseContext(), "Login Successful!", Toast.LENGTH_SHORT).show(); // Shows a quick message to the user saying it worked.
             finish(); // !! VERY IMPORTANT !! only call this if you're for sure done with an activity for the rest of the app. Any new instance will be brand new
-        }
-        else {
+        } else {
             Integer nameCount = userMap.get(usernameET.getText().toString().trim());
             Log.d("Count", nameCount + "");
             if (nameCount == null) {
