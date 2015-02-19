@@ -1,5 +1,6 @@
 package shopping.with.friends.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import shopping.with.friends.Activities.Followers;
+import shopping.with.friends.Activities.Following;
 import shopping.with.friends.MainApplication;
 import shopping.with.friends.Objects.Profile;
 import shopping.with.friends.R;
@@ -49,6 +52,22 @@ public class ProfileFragment extends Fragment {
         usernameTextView.setText("@" + profile.getUsername());
         followersButton.setText(profile.getFollowers().size() + " Followers");
         followingButton.setText(profile.getFollowing().size() + " Following");
+
+        followersButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), Followers.class);
+                startActivity(i);
+            }
+        });
+
+        followingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), Following.class);
+                startActivity(i);
+            }
+        });
 
         return view;
     }

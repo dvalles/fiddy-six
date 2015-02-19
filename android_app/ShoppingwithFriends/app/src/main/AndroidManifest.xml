@@ -36,6 +36,20 @@
         </activity>
 
         <activity
+            android:name=".Activities.Followers"
+            android:parentActivityName=".MainActivity"
+            android:label="@string/profile_followers"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <activity
+            android:name=".Activities.Following"
+            android:parentActivityName=".MainActivity"
+            android:label="@string/profile_following"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <activity
             android:name=".Login.LoginSelectorActivity"
             android:label="@string/activity_login_label"
             android:screenOrientation="portrait" >

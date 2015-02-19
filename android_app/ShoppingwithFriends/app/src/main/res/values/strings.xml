@@ -15,8 +15,8 @@
 
     <string name="activity_login_label">Login</string>
     <string name="activity_register_label">Make an Account</string>
-    <string name="profile_followers_button">Followers</string>
-    <string name="profile_following_button">Following</string>
+    <string name="profile_followers">Followers</string>
+    <string name="profile_following">Following</string>
 
     <string-array name="ma_slide_drawer_items">
         <item >Main Feed</item>

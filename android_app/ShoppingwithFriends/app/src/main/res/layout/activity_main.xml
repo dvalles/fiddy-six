@@ -8,7 +8,7 @@
 
     <include
         android:id="@+id/ma_toolbar"
-        layout="@layout/activity_main_toolbar" />
+        layout="@layout/toolbar_pink" />
 
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/ma_drawer_layout"
