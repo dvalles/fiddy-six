@@ -10,8 +10,7 @@
         android:id="@+id/fp_imageView"
         android:layout_width="fill_parent"
         android:layout_height="200dp"
-        android:layout_gravity="center_horizontal|top"
-        android:src="@android:mipmap/sym_def_app_icon" />
+        android:layout_gravity="center_horizontal|top" />
 
     <LinearLayout
         android:id="@+id/fp_button_linear_layout"

@@ -30,6 +30,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import shopping.with.friends.MainActivity;
+import shopping.with.friends.MainApplication;
+import shopping.with.friends.Objects.Profile;
 import shopping.with.friends.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -41,7 +43,7 @@ public class RegisterActivity extends ActionBarActivity {
     /**
      * Declarations
      */
-    private EditText emailET, usernameET, passwordET, passwordConfirmET;
+    private EditText emailET, usernameET, passwordET, passwordConfirmET, nameET;
     private Button signUpButton;
     private String returnUsername;
 
@@ -61,6 +63,7 @@ public class RegisterActivity extends ActionBarActivity {
         //getActionBar().setDisplayHomeAsUpEnabled(true);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
+        nameET = (EditText) findViewById(R.id.ar_name_et);
         emailET = (EditText) findViewById(R.id.ar_email_et);
         usernameET = (EditText) findViewById(R.id.ar_username_et);
         passwordET = (EditText) findViewById(R.id.ar_password_et);
@@ -88,7 +91,7 @@ public class RegisterActivity extends ActionBarActivity {
     /**
      * See loginActivity for explanation of POST
      */
-    public static String POST(String url, String email, String username, String password){
+    public static String POST(String url, String name, String email, String username, String password){
         InputStream inputStream;
         String result = "";
         try {
@@ -99,7 +102,8 @@ public class RegisterActivity extends ActionBarActivity {
             HttpPost httpPost = new HttpPost(url);
 
             // build jsonObject
-            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(3);
+            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(4);
+            nameValuePairs.add(new BasicNameValuePair("name", name));
             nameValuePairs.add(new BasicNameValuePair("email", email));
             nameValuePairs.add(new BasicNameValuePair("username", username));
             nameValuePairs.add(new BasicNameValuePair("password", password));
@@ -139,17 +143,13 @@ public class RegisterActivity extends ActionBarActivity {
         @Override
         protected String doInBackground(String... urls) {
 
+            String nameToPost = nameET.getText().toString().trim();
             String emailToPost = emailET.getText().toString().trim();
             String userNameToPost = usernameET.getText().toString().trim();
-
-            //TODO: Encrypt Password
             String passwordToPost = passwordET.getText().toString().trim();
 
-            Log.d("username", userNameToPost);
-            Log.d("password", passwordToPost);
 
-
-            return POST(urls[0], emailToPost, userNameToPost, passwordToPost);
+            return POST(urls[0], nameToPost, emailToPost, userNameToPost, passwordToPost);
         }
         // onPostExecute displays the results of the AsyncTask.
         @Override
@@ -185,6 +185,14 @@ public class RegisterActivity extends ActionBarActivity {
         returnUsername = mainObject.getString("username");
 
         if (returnUsername != null && returnUsername.equals(usernameET.getText().toString().trim())) {
+            Profile profile = new Profile();
+            profile.setId(mainObject.getString("_id"));
+            profile.setEmail(mainObject.getString("email"));
+            profile.setPassword(mainObject.getString("password"));
+            profile.setUsername(mainObject.getString("username"));
+            profile.setName(mainObject.getString("name"));
+            MainApplication mainApplication = new MainApplication();
+            mainApplication.setProfile(profile);
             Intent mainActivity = new Intent(RegisterActivity.this, MainActivity.class);
             startActivity(mainActivity);
             Toast.makeText(getBaseContext(), "Registration Successful!", Toast.LENGTH_SHORT).show();

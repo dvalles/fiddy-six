@@ -13,7 +13,7 @@ import java.util.List;
 import shopping.with.friends.R;
 
 /**
- * Created by ryanbrooks on 2/4/15.
+ * Created by Ryan Brooks on 2/4/15.
  */
 public class DrawerMenuAdapter extends BaseAdapter {
 

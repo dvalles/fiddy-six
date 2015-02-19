@@ -36,6 +36,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import shopping.with.friends.MainActivity;
+import shopping.with.friends.MainApplication;
+import shopping.with.friends.Objects.Profile;
 import shopping.with.friends.R; // <-- This file is sooooo important. I will be explaining more in the future
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -263,6 +265,15 @@ public class LoginActivity extends ActionBarActivity {
         loginSuccessful = mainObject.getBoolean("status"); // Cast correct variable as boolean
 
         if(loginSuccessful) {
+            JSONObject userObject = mainObject.getJSONObject("user");
+            Profile profile = new Profile();
+            profile.setId(userObject.getString("_id"));
+            profile.setEmail(userObject.getString("email"));
+            profile.setPassword(userObject.getString("password"));
+            profile.setUsername(userObject.getString("username"));
+            profile.setName(userObject.getString("name"));
+            MainApplication mainApplication = new MainApplication();
+            mainApplication.setProfile(profile);
             Intent mainActivity = new Intent(LoginActivity.this, MainActivity.class); // Successful login, starts main
             startActivity(mainActivity);
             Toast.makeText(getBaseContext(), "Login Successful!", Toast.LENGTH_SHORT).show(); // Shows a quick message to the user saying it worked.

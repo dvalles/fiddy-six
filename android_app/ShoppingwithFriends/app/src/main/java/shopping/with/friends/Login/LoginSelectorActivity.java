@@ -11,7 +11,7 @@ import shopping.with.friends.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
- * Created by ryanbrooks on 2/2/15.
+ * Created by Ryan Brooks on 2/2/15.
  */
 public class LoginSelectorActivity extends ActionBarActivity {
 

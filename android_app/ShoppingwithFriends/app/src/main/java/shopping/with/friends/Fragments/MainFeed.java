@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import shopping.with.friends.R;
 
 /**
- * Created by ryanbrooks on 2/4/15.
+ * Created by Ryan Brooks on 2/4/15.
  */
 public class MainFeed extends Fragment {
     public MainFeed() {

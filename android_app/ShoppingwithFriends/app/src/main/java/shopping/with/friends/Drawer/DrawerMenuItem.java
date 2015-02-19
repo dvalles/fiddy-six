@@ -1,7 +1,7 @@
 package shopping.with.friends.Drawer;
 
 /**
- * Created by ryanbrooks on 2/4/15.
+ * Created by Ryan Brooks on 2/4/15.
  */
 public class DrawerMenuItem {
     private String itemText;
