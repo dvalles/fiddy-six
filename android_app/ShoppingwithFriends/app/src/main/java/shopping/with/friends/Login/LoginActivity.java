@@ -24,6 +24,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -52,11 +53,12 @@ public class LoginActivity extends ActionBarActivity {
     /**
      * Declarations
      */
-    private EditText usernameET, passwordET;
+    private EditText emailET, passwordET;
     private Button loginButton, registerButton;
     private HttpClient client;
     private HttpPost post;
     private JSONObject loginObj;
+    private ArrayList<Profile> followerList, followingList;
     private boolean loginSuccessful;
 
     @Override
@@ -83,7 +85,10 @@ public class LoginActivity extends ActionBarActivity {
         //getActionBar().hide(); // Hiding actionbar
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
-        usernameET = (EditText) findViewById(R.id.al_username_et); // Finding username "form" aka EditText
+        followerList = new ArrayList<>();
+        followingList = new ArrayList<>();
+
+        emailET = (EditText) findViewById(R.id.al_email_et); // Finding username "form" aka EditText
         passwordET = (EditText) findViewById(R.id.al_password_et); // Finding password EditText
 
         loginButton = (Button) findViewById(R.id.al_login_button); // Finding login button
@@ -101,14 +106,14 @@ public class LoginActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 // If username or password fields don't have text in them, let the user know :
-                if (usernameET.getText().toString().trim().equals("") || usernameET.getText().toString().trim().equals(null)) {
+                if (emailET.getText().toString().trim().equals("") || emailET.getText().toString().trim().equals(null)) {
                     Toast.makeText(LoginActivity.this, "You didn't enter a username!", Toast.LENGTH_SHORT).show();
                 } else if (passwordET.getText().toString().trim().equals("") || passwordET.getText().toString().trim().equals(null)) {
                     Toast.makeText(LoginActivity.this, "You didn't enter a password!", Toast.LENGTH_SHORT).show();
                 } else {
                     //Set all buttons disabled to prevent multiple posts from firing at the same time. This can easily crash an app.
                     loginButton.setEnabled(false);
-                    usernameET.setEnabled(false);
+                    emailET.setEnabled(false);
                     passwordET.setEnabled(false);
                     // Create the ASyncTask that will run at the same time as the activity but in the background (see below)
                     //TODO: CHANGE THIS BEFORE USE!!!!!!!!
@@ -138,7 +143,7 @@ public class LoginActivity extends ActionBarActivity {
      * of the ASyncTask just in case it takes a little while to connect
      * and receive a response.
      */
-    public static String POST(String url, String username, String password){
+    public static String POST(String url, String email, String password){
 
         // Declarations
         InputStream inputStream;
@@ -153,7 +158,7 @@ public class LoginActivity extends ActionBarActivity {
 
             // Attach items as POST variables
             List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-            nameValuePairs.add(new BasicNameValuePair("email", username));
+            nameValuePairs.add(new BasicNameValuePair("email", email));
             nameValuePairs.add(new BasicNameValuePair("password", password));
 
             // Make sure httpPost has the POST variables attached
@@ -212,16 +217,16 @@ public class LoginActivity extends ActionBarActivity {
         @Override
         protected String doInBackground(String... urls) {
 
-            String userNameToPost = usernameET.getText().toString().trim();
+            String emailToPost = emailET.getText().toString().trim();
 
             //TODO: Encrypt Password
             String passwordToPost = passwordET.getText().toString().trim();
 
-            Log.d("username", userNameToPost);
+            Log.d("email", emailToPost);
             Log.d("password", passwordToPost);
 
 
-            return POST(urls[0], userNameToPost, passwordToPost);
+            return POST(urls[0], emailToPost, passwordToPost);
         }
 
         /**
@@ -266,13 +271,42 @@ public class LoginActivity extends ActionBarActivity {
 
         if(loginSuccessful) {
             JSONObject userObject = mainObject.getJSONObject("user");
+            JSONArray followersArray = userObject.getJSONArray("followers");
+            JSONArray followingArray = userObject.getJSONArray("following");
+            for (int i = 0; i < followersArray.length(); i++) {
+                JSONObject user = followersArray.getJSONObject(i);
+
+                Profile followerProfile = new Profile();
+                followerProfile.setId(user.getString("_id"));
+                followerProfile.setEmail(user.getString("email"));
+                followerProfile.setPassword(user.getString("password"));
+                followerProfile.setUsername(user.getString("username"));
+                followerProfile.setName(user.getString("name"));
+
+                followerList.add(followerProfile);
+            }
+            for (int i = 0; i < followingArray.length(); i++) {
+                JSONObject user = followingArray.getJSONObject(i);
+
+                Profile followingProfile = new Profile();
+                followingProfile.setId(user.getString("_id"));
+                followingProfile.setEmail(user.getString("email"));
+                followingProfile.setPassword(user.getString("password"));
+                followingProfile.setUsername(user.getString("username"));
+                followingProfile.setName(user.getString("name"));
+
+                followingList.add(followingProfile);
+            }
             Profile profile = new Profile();
             profile.setId(userObject.getString("_id"));
             profile.setEmail(userObject.getString("email"));
             profile.setPassword(userObject.getString("password"));
             profile.setUsername(userObject.getString("username"));
             profile.setName(userObject.getString("name"));
-            MainApplication mainApplication = new MainApplication();
+            profile.setFollowers(followerList);
+            profile.setFollowing(followerList);
+
+            MainApplication mainApplication = (MainApplication) getApplicationContext();
             mainApplication.setProfile(profile);
             Intent mainActivity = new Intent(LoginActivity.this, MainActivity.class); // Successful login, starts main
             startActivity(mainActivity);
@@ -281,7 +315,7 @@ public class LoginActivity extends ActionBarActivity {
         } else {
             Toast.makeText(getBaseContext(), mainObject.getString("message"), Toast.LENGTH_SHORT).show();
             loginButton.setEnabled(true);
-            usernameET.setEnabled(true);
+            emailET.setEnabled(true);
             passwordET.setEnabled(true);
         }
     }

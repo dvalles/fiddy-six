@@ -1,5 +1,7 @@
 package shopping.with.friends.Objects;
 
+import java.util.ArrayList;
+
 /**
  * Created by Ryan Brooks on 2/19/15.
  */
@@ -10,6 +12,8 @@ public class Profile {
     private String email;
     private String password;
     private String username;
+    private ArrayList<Profile> followers;
+    private ArrayList<Profile> following;
 
     public Profile() {
     }
@@ -20,6 +24,33 @@ public class Profile {
         this.email = email;
         this.password = password;
         this.username = username;
+    }
+
+    public Profile(String id, String name, String email, String password, String username,
+                   ArrayList<Profile> followers, ArrayList<Profile> following) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.username = username;
+        this.followers = followers;
+        this.following = following;
+    }
+
+    public ArrayList<Profile> getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(ArrayList<Profile> followers) {
+        this.followers = followers;
+    }
+
+    public ArrayList<Profile> getFollowing() {
+        return following;
+    }
+
+    public void setFollowing(ArrayList<Profile> following) {
+        this.following = following;
     }
 
     public String getUsername() {

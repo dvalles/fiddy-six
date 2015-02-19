@@ -59,7 +59,7 @@
             android:textAppearance="@style/TextAppearance.FontPathNormal"
             android:text="Email:"/>
         <EditText
-            android:id="@+id/al_username_et"
+            android:id="@+id/al_email_et"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"

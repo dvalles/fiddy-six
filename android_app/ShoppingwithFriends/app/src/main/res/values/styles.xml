@@ -10,6 +10,7 @@
         <item name="android:textColorPrimary">@color/abc_primary_text_material_dark</item>
         <item name="android:textColorSecondary">@color/abc_secondary_text_material_dark</item>
         <item name="actionMenuTextColor">@color/abc_primary_text_material_dark</item>
+        <item name="android:fontFamily">sans-serif</item>
     </style>
 
     <style name="TextAppearance.FontPathBold" parent="android:TextAppearance">

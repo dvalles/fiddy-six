@@ -1,5 +1,6 @@
 package shopping.with.friends;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -24,10 +25,12 @@ import shopping.with.friends.Drawer.DrawerMenuItem;
 import shopping.with.friends.Fragments.Followers;
 import shopping.with.friends.Fragments.Following;
 import shopping.with.friends.Fragments.MainFeed;
-import shopping.with.friends.Fragments.Profile;
+import shopping.with.friends.Fragments.ProfileFragment;
+import shopping.with.friends.Fragments.Search;
 import shopping.with.friends.Fragments.Settings;
 import shopping.with.friends.Fragments.WishList;
 import shopping.with.friends.Login.LoginSelectorActivity;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * Created by Ryan Brooks on 1/24/15.
@@ -39,6 +42,11 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
     private ActionBarDrawerToggle drawerToggle;
     private ListView drawerMenuListview;
     private DrawerMenuAdapter drawerMenuAdapter;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
     /**
      * See loginActivity
@@ -86,7 +94,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
                 setFragment(0, MainFeed.class);
                 break;
             case 1:
-                setFragment(1, Profile.class);
+                setFragment(1, ProfileFragment.class);
                 break;
             case 2:
                 setFragment(2, WishList.class);
@@ -98,7 +106,10 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
                 setFragment(4, Followers.class);
                 break;
             case 5:
-                setFragment(5, Settings.class);
+                setFragment(5, Search.class);
+                break;
+            case 6:
+                setFragment(6, Settings.class);
                 break;
         }
     }

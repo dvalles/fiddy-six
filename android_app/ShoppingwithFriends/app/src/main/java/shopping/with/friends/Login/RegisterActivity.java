@@ -191,7 +191,7 @@ public class RegisterActivity extends ActionBarActivity {
             profile.setPassword(mainObject.getString("password"));
             profile.setUsername(mainObject.getString("username"));
             profile.setName(mainObject.getString("name"));
-            MainApplication mainApplication = new MainApplication();
+            MainApplication mainApplication = (MainApplication) getApplicationContext();
             mainApplication.setProfile(profile);
             Intent mainActivity = new Intent(RegisterActivity.this, MainActivity.class);
             startActivity(mainActivity);
