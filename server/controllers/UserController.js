@@ -18,6 +18,17 @@ var UserController = function(User) {
     User = User;
 };
 
+// Gets list of all followers
+UserController.prototype.getAllUsers = function(req, res) {
+    User.find(function(err, users) {
+            if (err)
+                res.send(err);
+
+
+            res.json({'users': users});
+        });
+}
+
 // Gets list of followers
 UserController.prototype.getFollowers = function(req, res) {
     var id = req.query.user_id;
@@ -306,6 +317,7 @@ passport.use('signup', new LocalStrategy({
 
             var newUser = new User();
 
+            newUser.name = req.body.name;
             newUser.username = req.body.username;
             newUser.password = userUtils.createHash(password);
             newUser.email = email;

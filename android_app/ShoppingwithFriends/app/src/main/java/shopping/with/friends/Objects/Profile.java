@@ -37,6 +37,10 @@ public class Profile {
         this.following = following;
     }
 
+    public void addFollowing(Profile profile) {
+        following.add(profile);
+    }
+
     public ArrayList<Profile> getFollowers() {
         return followers;
     }

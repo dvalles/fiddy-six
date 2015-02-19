@@ -96,7 +96,8 @@ public class UserListviewAdapter extends BaseAdapter {
                 mHolder.followButton.setEnabled(false);
                 mHolder.followButton.setText("Following");
                 followingProfile = profile;
-                new HttpAsyncTask().execute("http://128.61.76.103:3000/api/user/follow");
+                userProfile.addFollowing(profile);
+                //new HttpAsyncTask().execute("http://128.61.76.103:3000/api/user/follow");
             }
         });
 
@@ -168,7 +169,7 @@ public class UserListviewAdapter extends BaseAdapter {
     }
 
     private void readJSONResponse(String result) throws JSONException {
-        Log.d("JSON", result);
+        Log.d("Follow", result);
         JSONObject mainObject = new JSONObject(result);
         boolean status = mainObject.getBoolean("status");
         String message = mainObject.getString("message");
