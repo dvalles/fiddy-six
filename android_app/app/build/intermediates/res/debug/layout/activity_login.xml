@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <!-- Title Text -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="needit"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/al_login_layout"
+        android:textColor="@color/main_green"
+        android:textSize="60dp"
+        />
+
+    <!-- Most of the time we will use RelativeLayout -->
+    <!-- XML is Actually a lot like HTML, so should be easy -->
+    <!-- If anything is dynamic or interactive, ALWAYS give it an id -->
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/al_login_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16sp"
+        android:layout_marginRight="16sp"
+        android:padding="16dp"
+        android:layout_centerInParent="true">
+        <!--  Email Label -->
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#372c24"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Username:"/>
+        <EditText
+            android:id="@+id/al_username_et"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            android:layout_marginBottom="20dip"
+            android:singleLine="true"
+            android:fontFamily="sans-serif-condensed"/>
+
+        <!--  Password Label -->
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#372c24"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Password"/>
+
+        <EditText
+            android:id="@+id/al_password_et"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            android:layout_marginBottom="20sp"
+            android:singleLine="true"
+            android:password="true"
+            android:fontFamily="sans-serif-condensed"/>
+
+        <!-- Login button -->
+        <Button
+            android:id="@+id/al_login_button"
+            android:layout_width="fill_parent"
+            android:layout_height="45sp"
+            android:layout_marginTop="20sp"
+            android:text="Login"
+            android:textColor="@color/white"
+            android:background="@drawable/selector_button_green"/>
+    </LinearLayout>
+
+    <Button android:id="@+id/al_register_button"
+        android:background="@drawable/selector_button_green"
+        android:layout_width="fill_parent"
+        android:layout_height="42dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_below="@+id/al_login_layout"
+        android:text="New to needit? Register here"
+        android:fontFamily="sans-serif-condensed"
+        android:textColor="#fff"/>
+
+</RelativeLayout><!-- From: file:/C:/Users/Dom/Documents/GitHub/fiddy-six/android_app/app/src/main/res/layout/activity_login.xml -->

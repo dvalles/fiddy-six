@@ -33,13 +33,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import shopping.with.friends.MainActivity;
 import shopping.with.friends.MainApplication;
 import shopping.with.friends.Objects.Profile;
-import shopping.with.friends.R; // <-- This file is sooooo important. I will be explaining more in the future
+import shopping.with.friends.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
@@ -117,7 +116,7 @@ public class LoginActivity extends ActionBarActivity {
                     passwordET.setEnabled(false);
                     // Create the ASyncTask that will run at the same time as the activity but in the background (see below)
                     //TODO: CHANGE THIS BEFORE USE!!!!!!!!
-                    new HttpAsyncTask().execute("http://128.61.76.103:3000/api/user/login"); // TODO: Change to server URL
+                    new HttpAsyncTask().execute("http://143.215.52.50:3000/api/user/login"); // TODO: Change to server URL
                 }
             }
         });

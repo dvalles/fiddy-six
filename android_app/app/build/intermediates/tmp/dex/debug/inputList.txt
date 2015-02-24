@@ -1,0 +1,5 @@
+C:\Users\Dom\Documents\GitHub\fiddy-six\android_app\app\build\intermediates\classes\debug
+C:\Users\Dom\Documents\GitHub\fiddy-six\android_app\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-7517bbe09d8bcddbcccfb3eca887e175b7800b6d.jar
+C:\Users\Dom\Documents\GitHub\fiddy-six\android_app\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-51a70c0364ba64341b9fb8ca406670631b79273d.jar
+C:\Users\Dom\Documents\GitHub\fiddy-six\android_app\app\build\intermediates\pre-dexed\debug\classes-ac5676e4412a1a31cd8c7944dac0045a097b39a0.jar
+C:\Users\Dom\Documents\GitHub\fiddy-six\android_app\app\build\intermediates\pre-dexed\debug\classes-54f3a62b2995c3b00a8dd457390d446078949d4b.jar

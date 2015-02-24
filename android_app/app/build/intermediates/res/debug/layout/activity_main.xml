@@ -1,0 +1,21 @@
+<!-- ALWAYS USE RELATIVE LAYOUTS!!!!!!!!! -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!-- This is the text in the center of the screen
+         that says Main Menu. I've altered the styling slightly -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Main Menu"
+        android:layout_centerInParent="true"
+        android:textSize="24dp"
+        android:textColor="#000"
+        android:fontFamily="sans-serif-thin"/>
+
+</RelativeLayout>
+<!-- From: file:/C:/Users/Dom/Documents/GitHub/fiddy-six/android_app/app/src/main/res/layout/activity_main.xml -->
